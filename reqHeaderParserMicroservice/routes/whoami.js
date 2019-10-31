@@ -2,12 +2,14 @@
 
 
 var express = require('express');
-
 var app = express.Router();
 
-app.get("/api/whoami", function(req, res, next) {
-    res.json({"Language": navigator.language});
+app.get("/", function(req, res, next) {
+      res.json({"ipaddress" : req.headers['x-forwarded-for'].split(',')[1], 
+                "language" : req.headers['accept-language'], 
+                "software": req.headers['user-agent']});
 });
+  
 
 
 
